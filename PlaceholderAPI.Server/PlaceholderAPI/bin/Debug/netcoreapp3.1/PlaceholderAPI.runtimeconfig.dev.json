@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\aderk\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\aderk\\.nuget\\packages"
+    ]
+  }
+}

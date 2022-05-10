@@ -1,0 +1,40 @@
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.responsiveImage {
+  max-width: 100%;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.title {
+  width: 150px;
+  margin: 0 auto;
+}
+
+/* mobile */
+.cell {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+}
+
+/* tablet */
+@media screen and (min-width: 600px) {   
+  .cell {
+      width: calc(50% - 2rem);
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1000px) {
+  .cell {
+      width: calc(25% - 2rem);
+  }
+}
