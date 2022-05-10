@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using PlaceholderAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +12,21 @@ namespace PlaceholderAPI.Controllers
     [Route("[controller]")]
     [ApiController]
     public class DataController : ControllerBase
-    {
-        private readonly string serviceUrl = "https://jsonplaceholder.typicode.com/photos";
-
+    {   
         private IEnumerable<Photo> photos;
 
         static HttpClient client = new HttpClient();
 
         public DataController()
-        {            
-            GetData().Wait();
+        {
+            var serviceUrl = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build()
+                .GetSection("AppSettings")["PlaceholderServiceUrl"];
+            GetData(serviceUrl).Wait();
         }
 
-        async Task GetData()
+        async Task GetData(string serviceUrl)
         {
             var response = await client.GetAsync(serviceUrl, HttpCompletionOption.ResponseContentRead);
             if (response.IsSuccessStatusCode)
