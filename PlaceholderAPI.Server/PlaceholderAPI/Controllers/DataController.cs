@@ -47,7 +47,7 @@ namespace PlaceholderAPI.Controllers
         [Route("pageFiltered")]
         public ResponseDTO GetFiltered(string query = "", string sort = "", int from = 0, int itemsPerPage = 16)
         {
-            var result = photos.Where(p => p.Title.Contains(query ?? string.Empty));
+            var result = photos.Where(p => p.Title.StartsWith(query ?? string.Empty));
 
             if (!string.IsNullOrEmpty(sort))
                 result = sort == "asc" ? result.OrderBy(p => p.Title) : result.OrderByDescending(p => p.Title);
